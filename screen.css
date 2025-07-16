@@ -4,15 +4,19 @@
   src: url('/fonts/sf.otf') format('opentype');
 }
 
-@font-face {
-  font-family: 'Regular';
-  src: url('/Lato/Lato-Regular.ttf') format('truetype');
-}
+/* ------------- background ------------------------------- */
 
 html{
-  background: #130303
+  background-image: ('/images/background.pmg')
+;}
+
+.box-frost{
+  box-shadow:0 4px 12 px #00000088; 
+  display:flex;
+  justify-content: space-between;
 }
 
+/* ------------- nav ------------------------------- */
 nav {
   position: relative;
   width: 100%;
