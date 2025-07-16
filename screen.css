@@ -4,6 +4,11 @@
   src: url('/fonts/sf.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'SF';
+  src: url('/fonts/sf.otf') format('opentype');
+}
+
 /* ------------- background ------------------------------- */
 
 html{
@@ -14,6 +19,7 @@ html{
   box-shadow:0 4px 12 px #00000088; 
   display:flex;
   justify-content: space-between;
+  backdrop-filter: blur(16px);
 }
 
 /* ------------- nav ------------------------------- */
