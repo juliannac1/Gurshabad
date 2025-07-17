@@ -35,7 +35,7 @@ nav{
 
 .menu{
   position: relative !important;
-  right: 0 !important;
+  right: 100 !important;
   display: flex;
   justify-content: center;
   flex-direction: row;
