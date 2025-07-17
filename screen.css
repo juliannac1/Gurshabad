@@ -14,7 +14,10 @@
 
 .body{
   background-image: url('images/background.png');
- 
+  background-size: cover;        /* or "contain" */
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;  
 }
 
 .box-frost{
