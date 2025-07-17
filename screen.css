@@ -12,7 +12,7 @@
 
 /* ------------- background ------------------------------- */
 
-.body{
+body{
   font-family: var(SF-Pro-Display-Regular);
   background-image: url('images/background.png');
   background-size: cover;       
