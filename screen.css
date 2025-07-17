@@ -10,7 +10,8 @@
 body{
   font-family: 'SF', sans-serif;
   background-image: url('images/background.png');
-  background-size: cover;       
+  background-size: cover;   
+  backdrop-filter: blur(16px);   
   background-repeat: no-repeat;
   background-position: center center;
   min-height: 100vh;  
@@ -58,7 +59,7 @@ nav{
 }
 
 .menu li a:hover{
-  color: #EFBD80;
+  color: #000000;
   transition: 0.5s;
 }
 
