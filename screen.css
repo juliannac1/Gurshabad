@@ -9,11 +9,14 @@
   src: url('/fonts/sf.otf') format('opentype');
 }
 
+.body{
+
+}
 /* ------------- background ------------------------------- */
 
 html{
-  background-image: ('/images/background.pmg')
-;}
+  background-image: url('/images/background.pmg');
+}
 
 .box-frost{
   box-shadow:0 4px 12 px #00000088; 
