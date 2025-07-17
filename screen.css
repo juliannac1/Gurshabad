@@ -25,8 +25,6 @@ nav{
   justify-content: space-between;
   align-items: center;
   padding: 0 25px;
-  right: -100%;
-  /* ... */
 }
 
 .navbar{
@@ -36,6 +34,8 @@ nav{
 }
 
 .menu{
+  position: relative !important;
+  right: 0 !important;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -50,7 +50,7 @@ nav{
 .menu li a{
   color: var(#000000);
   text-decoration: none;
-  font-family: var(sf);
+  font-family: 'SF', sans-serif;
   font-weight: 600;
   font-size: 1.75rem;
   display: block;
