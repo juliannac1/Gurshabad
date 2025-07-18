@@ -196,3 +196,19 @@ nav{
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+  search-page {
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh
+}
+
+.search-page .search-form {
+    max-width: 625px
+}
+
+.search-options {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem -5px
+}
