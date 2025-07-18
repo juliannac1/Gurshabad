@@ -9,7 +9,7 @@
 
 body{
   font-family: 'SF', sans-serif;
-  background-image: url('images/background.png');
+  background-image: url('images/bg.png');
   background-size: cover;   
   backdrop-filter: blur(16px);   
   background-repeat: no-repeat;
@@ -202,7 +202,7 @@ nav{
     justify-content: center;
     padding-top: 5vh
 }
-
+  /* -------------------search--------------- */
 .search-page .search-form {
     max-width: 625px
 }
