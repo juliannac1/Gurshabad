@@ -13,7 +13,7 @@ body{
   background-size: cover;   
   backdrop-filter: blur(16px);   
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: top center;
   min-height: 100vh;  
 }
 
