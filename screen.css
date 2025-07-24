@@ -212,3 +212,34 @@ nav{
   justify-content: space-between;
   margin: 1rem -5px
 }
+
+.search-form {
+  max-width: 100%
+}
+
+@media screen and (max-width: 69.99em) {
+   .search-form {
+        max-width: 100vw;
+        padding: 0 8px
+    }
+
+    .top-bar #search-container {
+        width: 100%
+    }
+
+    .top-bar #search {
+        max-width: none
+    }
+
+    #search-options {
+        display: flex;
+        margin: 0;
+        padding: 0.5rem 8px 0;
+        width: 100%
+    }
+
+    #search-options select {
+        width: 33.33%
+    }
+
+}
