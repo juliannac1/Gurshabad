@@ -202,20 +202,17 @@ nav{
   .dropdown-content {
     display: none;
     position: absolute;
-    color: #d3d3d3d9;
-    text-decoration: none;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    min-width: 160px;
     border-radius: 16px;
     background: #ffffff14;
     border: 1px solid #ffffff46;
     box-shadow: 0 8px 32px #00000039;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    font-family: 'SF', sans-serif;
-    font-weight: 600;
-    font-size: 1.75rem;
-    display: block;
-    padding: 20px 30px;
-    z-index: 1;
+    padding: 1rem;
   }
   
   /* Links inside the dropdown */
@@ -223,6 +220,9 @@ nav{
     color: black;
     padding: 12px 16px;
     text-decoration: none;
+    display: block;
+  }
+  .dropdown:hover .dropdown-content {
     display: block;
   }
   
@@ -260,6 +260,9 @@ nav{
 }
 
 .search-form {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   padding: 1rem;
   margin:0;
   border-radius: 8px;
@@ -274,7 +277,7 @@ nav{
   font-size: 2rem;
   padding: 1rem 1.5rem;
   border-radius: 10px;
-  border: 1.5px solid #ccc;
+  border: 1.5px solid #cccccca0;
   box-sizing: border-box;
 }
 
@@ -289,12 +292,12 @@ nav{
   font-size: 2rem;
   padding: 1rem 1.5rem;
   border-radius: 16px;          /* updated radius */
-  background: #ffffff2f;        /* semi-transparent white background */
+  background: #ffffff09;        /* semi-transparent white background */
   border: 1px solid #ffffff46;  /* subtle white border */
   box-shadow: 0 8px 32px #00000039; /* shadow for depth */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: #fffffff1;             /* text color */
+  color: #ffffff99;             /* text color */
   text-decoration: none;
   font-family: 'SF', sans-serif;
   box-sizing: border-box;
@@ -302,7 +305,7 @@ nav{
 }
 
 #search-type {
-  color: #d3d3d3d9;
+  color: #d3d3d39c;
   text-decoration: none;
   border-radius: 16px;
   background: #ffffff14;
