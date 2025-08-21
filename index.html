@@ -1,66 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width,
-        initial-scale=1.0" />
-        <title>Gurshabad - Home</title>
-        <link rel="stylesheet" href="normalize.css">
-        <link rel="stylesheet" href="screen.css">
-    </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gurshabad - Home</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="screen.css">
+  <!-- fan/deck layout styles -->
+  <link rel="stylesheet" href="css/raag-carousel.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='24' fill='%230a0a0a'/><text x='50%25' y='62%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='80' fill='%23b3d9ff'>G</text></svg>">
+<script>window.__GURBANI_API_BASE__ = '/api/banidb';</script>
+</head>
+<body>
+  <!-- Header + Nav -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img alt="logo" width="65" src=""></a>
+      </div>
+      <div class="navbar">
+        <input type="checkbox" class="toggle-menu">
+        <div class="hamburger"></div>
+        <ul class="menu">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="learning nav-pill" aria-haspopup="true" aria-expanded="false">Learning</button>
+              <div class="dropdown-content" role="menu" hidden>
+                <a href="unlearning.html" role="menuitem">Unlearning</a>
+                <a href="principles.html" role="menuitem">Principles</a>
+                <a href="courses.html" role="menuitem">Courses</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="guide.html">Guide</a></li>
+          <li><a href="flow-map.html">Flow-map</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-    <body>
-        <header>
-            <nav>
-                <div class="logo">
-                <a href="index.html"><img
-                    alt="logo"
-                    width="65"
-                    src=""></a>
-                </div>
-                <div class="navbar">
-                    <input type="checkbox" class="toggle-menu">
-                    <div class="hamburger"></div>
-                    <ul class="menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li>
-                            <div class="dropdown">
-                            <button class="learning">Learning</button>
-                            <div class="dropdown-content">
-                              <a href="unlearning.html">Unlearning</a>
-                              <a href="principles.html">Principles</a>
-                              <a href="courses.html">Courses</a>
-                            </div>
-                          </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <div class="search-page">
-            <form class="search-form" action="/search">
-                <div class="search-container">
-                    <input name="q" id="search" type="search" autocapitalize="none" 
-                    autocomplete="off" autocorrect="off" spellcheck="false" 
-                    required="" class="gurbani-font" placeholder="Gurbani Search" 
-                    title="Enter 2 characters minimum." pattern=".{2,}" value="">
-                    <button type="button" class="clear-search-toggle" aria-label="clear search">
-                        <svg width=".9em" height=".9em" viewBox="0 0 384 512">
-                            <path d="M323.1 441l53.9-53.9c9.4-9.4 9.4-24.5 0-33.9L279.8 256l97.2-97.2c9.4-9.4 9.4-24.5 0-33.9L323.1 71c-9.4-9.4-24.5-9.4-33.9 0L192 168.2 94.8 71c-9.4-9.4-24.5-9.4-33.9 0L7 124.9c-9.4 9.4-9.4 24.5 0 33.9l97.2 97.2L7 353.2c-9.4 9.4-9.4 24.5 0 33.9L60.9 441c9.4 9.4 24.5 9.4 33.9 0l97.2-97.2 97.2 97.2c9.3 9.3 24.5 9.3 33.9 0z">
+  <!-- Raag Carousel (single wrapper + container) -->
+  <div id="raag-carousel" class="raag-carousel-wrapper">
+    <button class="carousel-nav carousel-prev" aria-label="Previous">‹</button>
 
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="search-options">
-                    <select name="type" id="search-type">
-                        <option value="1">First letter each word anywhere (Gurmukhi)</option>
-                        <option value="2">Full Word (Gurmukhi)</option>
-                        <option value="5">Ang</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-    </body>
+    <div class="raag-carousel-container">
+      <article class="raag-card active" data-raag-slug="asa" data-has-sections="1">
+        <h2 class="raag-name">ਆਸਾ</h2>
+        <p class="raag-ang">ਅੰਗ ੮</p>
+      </article>
+      <article class="raag-card" data-raag-slug="gujari" data-has-sections="1">
+        <h2 class="raag-name">ਗੂਜਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੦</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਦੀਪਕੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੨</p>
+      </article>
+      <article class="raag-card" data-raag-slug="dhanasri" data-has-sections="1">
+        <h2 class="raag-name">ਧਨਾਸਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਪੂਰਬੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩</p>
+      </article>
+      <article class="raag-card" data-raag-slug="sri-raag" data-has-sections="1">
+        <h2 class="raag-name">ਸਿਰੀ ਰਾਗੁ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੪</p>
+      </article>
+      <article class="raag-card" data-raag-slug="maajh" data-has-sections="1">
+        <h2 class="raag-name">ਮਾਝ</h2>
+        <p class="raag-ang">ਅੰਗ ੯੪</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਗੁਆਰੇਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੫੧</p>
+      </article>
+      <article class="raag-card" data-raag-slug="gauri" data-has-sections="1">
+        <h2 class="raag-name">ਗਉੜੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੫੧</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਦਖਣੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੫੨</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਚੇਤੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੫੪</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਬੈਰਾਗਣਿ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੫੫</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਪੂਰਬੀ ਦੀਪਕੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੫੭</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਮਾਝ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੭੨</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗੌੜੀ ਮਾਲਵਾ</h2>
+        <p class="raag-ang">ਅੰਗ ੨੧੪</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਮਾਲਾ</h2>
+        <p class="raag-ang">ਅੰਗ ੨੧੪</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਗਉੜੀ ਸੋਰਠਿ</h2>
+        <p class="raag-ang">ਅੰਗ ੩੩੦</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਆਸਾ ਕਾਫੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੩੬੫</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਆਸਾਵਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੩੬੯</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਆਸਾ ਆਸਾਵਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੪੦੯</p>
+      </article>
+      <article class="raag-card" data-raag-slug="devgandhari" data-has-sections="1">
+        <h2 class="raag-name">ਦੇਵਗੰਧਾਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੫੨੭</p>
+      </article>
+      <article class="raag-card" data-raag-slug="bihagara" data-has-sections="1">
+        <h2 class="raag-name">ਬਿਹਾਗੜਾ</h2>
+        <p class="raag-ang">ਅੰਗ ੫੩੭</p>
+      </article>
+      <article class="raag-card" data-raag-slug="wadahans" data-has-sections="1">
+        <h2 class="raag-name">ਵਡਹੰਸੁ</h2>
+        <p class="raag-ang">ਅੰਗ ੫੫੭</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਵਡਹੰਸੁ ਦਖਣੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੫੮੦</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਸੋਰਠਿ</h2>
+        <p class="raag-ang">ਅಂಗ ੫੯੫</p>
+      </article>
+      <article class="raag-card" data-raag-slug="jaitsri" data-has-sections="1">
+        <h2 class="raag-name">ਜੈਤਸਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੬੯੬</p>
+      </article>
+      <article class="raag-card" data-raag-slug="todi" data-has-sections="1">
+        <h2 class="raag-name">ਟੋਡੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੧੧</p>
+      </article>
+      <article class="raag-card" data-raag-slug="bairari" data-has-sections="1">
+        <h2 class="raag-name">ਬੈਰਾੜੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੧੯</p>
+      </article>
+      <article class="raag-card" data-raag-slug="tilang" data-has-sections="1">
+        <h2 class="raag-name">ਤਿਲੰਗ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੨੧</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਤਿਲੰਗ ਕਾਫੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੨੬</p>
+      </article>
+      <article class="raag-card" data-raag-slug="suhi" data-has-sections="1">
+        <h2 class="raag-name">ਸੂਹੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੨੮</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਸੂਹੀ ਕਾਫੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੫੧</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਸੂਹੀ ਲਲਿਤ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੯੩</p>
+      </article>
+      <article class="raag-card" data-raag-slug="bilaval" data-has-sections="1">
+        <h2 class="raag-name">ਬਿਲਾਵਲ</h2>
+        <p class="raag-ang">ਅੰਗ ੭੯੫</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਬਿਲਾਵਲ ਦਖਣੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੮੪੩</p>
+      </article>
+      <article class="raag-card" data-raag-slug="gaund" data-has-sections="1">
+        <h2 class="raag-name">ਗੋਂਡ</h2>
+        <p class="raag-ang">ਅੰਗ ੮੫੯</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਬਿਲਾਵਲ ਗੋਂਡ</h2>
+        <p class="raag-ang">ਅੰਗ ੮੭੪</p>
+      </article>
+      <article class="raag-card" data-raag-slug="ramkali" data-has-sections="1">
+        <h2 class="raag-name">ਰਾਮਕਲੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੮੭੬</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਰਾਮਕਲੀ ਦਖਣੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੯੦੭</p>
+      </article>
+      <article class="raag-card" data-raag-slug="nat-narayan" data-has-sections="1">
+        <h2 class="raag-name">ਨਟ ਨਾਰਾਇਨ</h2>
+        <p class="raag-ang">ਅੰਗ ੯੭੫</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਨਟ</h2>
+        <p class="raag-ang">ਅੰਗ ੯੭੫</p>
+      </article>
+      <article class="raag-card" data-raag-slug="mali-gaura" data-has-sections="1">
+        <h2 class="raag-name">ਮਾਲੀ ਗਉੜਾ</h2>
+        <p class="raag-ang">ਅੰਗ ੯੮੪</p>
+      </article>
+      <article class="raag-card" data-raag-slug="maru" data-has-sections="1">
+        <h2 class="raag-name">ਮਾਰੂ</h2>
+        <p class="raag-ang">ਅੰਗ ੯੮੯</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਮਾਰੂ ਕਾਫੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੦੧੪</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਮਾਰੂ ਦਖਣੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੦੩੩</p>
+      </article>
+      <article class="raag-card" data-raag-slug="tukhari" data-has-sections="1">
+        <h2 class="raag-name">ਤੁਖਾਰੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੧੦੭</p>
+      </article>
+      <article class="raag-card" data-raag-slug="kedara" data-has-sections="1">
+        <h2 class="raag-name">ਕੇਦਾਰਾ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੧੧੮</p>
+      </article>
+      <article class="raag-card" data-raag-slug="bhairau" data-has-sections="1">
+        <h2 class="raag-name">ਭੈਰੌ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੧੨੫</p>
+      </article>
+      <article class="raag-card" data-raag-slug="basant" data-has-sections="1">
+        <h2 class="raag-name">ਬਸੰਤੁ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੧੬੮</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਬਸੰਤੁ ਹਿੰਡੋਲ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੧੭੦</p>
+      </article>
+      <article class="raag-card" data-raag-slug="sarang" data-has-sections="1">
+        <h2 class="raag-name">ਸਾਰੰਗ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੧੯੭</p>
+      </article>
+      <article class="raag-card" data-raag-slug="malaar" data-has-sections="1">
+        <h2 class="raag-name">ਮਲਾਰ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੨੫੪</p>
+      </article>
+      <article class="raag-card" data-raag-slug="kanara" data-has-sections="1">
+        <h2 class="raag-name">ਕਾਨੜਾ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੨੯੪</p>
+      </article>
+      <article class="raag-card" data-raag-slug="kalyan" data-has-sections="1">
+        <h2 class="raag-name">ਕਲਿਆਨ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩੧੯</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਕਲਿਆਨ ਭੋਪਾਲੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩੨੧</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਪ੍ਰਭਾਤੀ ਬਿਭਾਸ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩੨੭</p>
+      </article>
+      <article class="raag-card" data-raag-slug="prabhati" data-has-sections="1">
+        <h2 class="raag-name">ਪ੍ਰਭਾਤੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩੨੭</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਪ੍ਰਭਾਤੀ ਦਖਣੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩੪੪</p>
+      </article>
+      <article class="raag-card">
+        <h2 class="raag-name">ਬਿਭਾਸ ਪ੍ਰਭਾਤੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩੪੭</p>
+      </article>
+      <article class="raag-card" data-raag-slug="jaijavanti" data-has-sections="1">
+        <h2 class="raag-name">ਜੈਜਾਵੰਤੀ</h2>
+        <p class="raag-ang">ਅੰਗ ੧੩੫੨</p>
+      </article>
+    </div>
+
+    <button class="carousel-nav carousel-next" aria-label="Next">›</button>
+  </div>
+
+  <!-- Search (pinned to bottom by your CSS) -->
+  <div class="search-page" id="search-view">
+    <form class="search-form" action="search-results.html" method="get" role="search" novalidate>
+      <div class="search-container">
+        <input
+          name="q"
+          id="search"
+          type="search"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          required
+          class="gurbani-font"
+          data-transliteration="off"
+          lang="pa"
+          dir="ltr"
+          placeholder="ਗੁਰਬਾਣੀ ਖੋਜ..."
+          title="Enter 1 character minimum."
+          pattern=".{1,}"
+          value=""
+          data-placeholder-en="ਗੁਰਬਾਣੀ ਖੋਜ..."
+          data-placeholder-pa="ਗੁਰਬਾਣੀ ਖੋਜ..."
+          style="font-family:'GurbaniWebThick','AnmolLipi','GurbaniAkhar','Noto Sans Gurmukhi','Kohinoor Gurmukhi',sans-serif!important;"
+        >
+        <button type="button" class="clear-search-toggle" aria-label="clear search" style="display:none">
+          <svg width=".9em" height=".9em" viewBox="0 0 384 512" aria-hidden="true">
+            <path d="M323.1 441l53.9-53.9c9.4-9.4 9.4-24.5 0-33.9L279.8 256l97.2-97.2c9.4-9.4 9.4-24.5 0-33.9L323.1 71c-9.4-9.4-24.5-9.4-33.9 0L192 168.2 94.8 71c-9.4-9.4-24.5-9.4-33.9 0L7 124.9c-9.4 9.4-9.4 24.5 0 33.9L97.2 97.2L7 353.2c-9.4 9.4-9.4 24.5 0 33.9L60.9 441c9.4 9.4 24.5 9.4 33.9 0l97.2-97.2 97.2 97.2c9.3 9.3 24.5 9.3 33.9 0z"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-options">
+        <select name="type" id="search-type">
+          <option value="1">First letter each word anywhere (Gurmukhi)</option>
+          <option value="2">Full Word (Gurmukhi)</option>
+          <option value="5">Ang</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/search.js"></script>
+  <script src="js/raag-carousel.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof RaagCarousel === 'function') new RaagCarousel('raag-carousel');
+    });
+  </script>
+  <script src="js/menu.js"></script>
+</body>
 </html>

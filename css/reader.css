@@ -1,0 +1,105 @@
+/* ============ Reader page ============ */
+
+/* Reserve right-side space for the fixed reader toolbar so nav chips don't collide */
+.reader-page header nav { padding-right: 320px; }
+
+/* Reader toolbar (fixed, matches search pill look) */
+.reader-toolbar {
+  position: fixed;
+  top: 72px;   /* adjust if header height differs */
+  right: 24px;
+  margin: 0;
+  z-index: 1200;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Buttons */
+.reader-toolbar .btn {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.10);
+  color: #ffffff;
+  padding: 8px 14px;
+  line-height: 1;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.98rem;
+  white-space: nowrap;
+  transition: background .15s ease, border-color .15s ease, transform .05s ease;
+}
+.reader-toolbar .btn:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); }
+.reader-toolbar .btn:active { transform: translateY(1px); }
+.reader-toolbar .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* Label + input */
+.reader-toolbar .ang-label { color:#ffffff; opacity:.9; font-size:1rem; margin-right:-2px; }
+.reader-toolbar .ang-input  {
+  width: 84px; text-align: center; color:#ffffff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px; padding: 7px 10px; font-size:1rem;
+}
+.reader-toolbar .ang-input:focus { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* Force Latin UI font for toolbar controls */
+.reader-toolbar, .reader-toolbar * {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0;
+}
+
+/* Shabad panel styling (glass card) */
+#gurbani-container {
+  max-width: min(980px, 92vw);
+  margin: 18px auto 48px;          /* space below header/toolbar */
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  color: #fff;
+  text-align: left;
+}
+
+/* Line layout + separators */
+.gurbani-line {
+  display: grid; grid-template-columns: auto 1fr;
+  align-items: baseline; column-gap: 12px; row-gap: 2px;
+  margin: 8px 0; padding: 2px 0;
+}
+.gurbani-line + .gurbani-line {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  margin-top: 10px;
+  padding-top: 12px;
+}
+.gurbani-line .line-number {
+  color:#fff; opacity:.55; font-size:.95rem; font-variant-numeric: tabular-nums;
+  min-width:2.2ch; text-align:right;
+}
+.gurbani-line .gurmukhi-text {
+  margin:0; color:#fff; font-weight:600; line-height:1.75;
+  font-size:clamp(1.1rem,2.2vw,1.55rem); letter-spacing:.1px; font-feature-settings:"locl";
+}
+.gurbani-line .transliteration {
+  margin:2px 0 0; color:#fff; opacity:.82; line-height:1.55; font-size:clamp(.96rem,1.9vw,1.15rem);
+}
+.gurmukhi-word { cursor:pointer; padding:0 .06em; border-radius:4px; }
+.gurmukhi-word:hover { background: rgba(255,255,255,0.10); }
+
+/* Responsive */
+@media (max-width: 1060px) { .reader-page header nav { padding-right: 260px; } }
+@media (max-width: 860px)  { .reader-page header nav { padding-right: 200px; } .reader-toolbar { top: 68px; right: 16px; } }
+@media (max-width: 640px)  {
+  .reader-toolbar { position: sticky; top: 68px; right: auto; margin: 8px auto 12px; }
+  .reader-page header nav { padding-right: 0; }
+}
+/* ---- Reader hotfixes ---- */
+.gurbani-line { grid-template-columns: 1fr !important; }
+.gurbani-line .line-number { display: none !important; }

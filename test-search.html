@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Bar Test</title>
+  <style>
+    body {
+      background: #333;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    /* This should make the search bar visible with a bright red background */
+    #test-search {
+      position: fixed;
+      top: 100px;
+      left: 20px;
+      width: 400px;
+      background: red !important;
+      padding: 20px;
+      border: 5px solid yellow;
+      z-index: 999999;
+    }
+    
+    #test-search input {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      background: white;
+      color: black;
+      border: 2px solid black;
+      margin-bottom: 10px;
+    }
+    
+    #test-search select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background: white;
+      color: black;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Search Bar Visibility Test</h1>
+  <p>If you can see a RED box with YELLOW border containing a search input and dropdown, then the HTML/CSS is working.</p>
+  
+  <!-- Test search bar with bright colors -->
+  <div id="test-search">
+    <h2 style="color: white; margin: 0 0 10px 0;">TEST SEARCH BAR</h2>
+    <form>
+      <input type="text" placeholder="Type here to test..." />
+      <select>
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </form>
+  </div>
+  
+  <div style="margin-top: 300px;">
+    <h2>Debugging Info:</h2>
+    <p>Open the browser console (F12) and check for any errors.</p>
+    <p>The search bar should be visible at position: fixed, top: 100px, left: 20px</p>
+  </div>
+  
+  <script>
+    console.log('Test page loaded');
+    const searchBar = document.getElementById('test-search');
+    if (searchBar) {
+      console.log('Search bar found!');
+      const styles = window.getComputedStyle(searchBar);
+      console.log('Display:', styles.display);
+      console.log('Visibility:', styles.visibility);
+      console.log('Position:', styles.position);
+      console.log('Z-index:', styles.zIndex);
+    } else {
+      console.error('Search bar not found!');
+    }
+  </script>
+</body>
+</html>

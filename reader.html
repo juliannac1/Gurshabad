@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gurshabad — Reader</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="screen.css">
+  <link rel="stylesheet" href="css/reader.css">
+  <link rel="stylesheet" href="css/meaning-box.css">
+  <link rel="stylesheet" href="css/shabad-ui.css">
+  <script>window.__GURBANI_API_BASE__ = '/api/banidb';</script>
+</head>
+<body class="gurbani-font shabad-page">
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img alt="logo" width="65" src=""></a>
+      </div>
+      <div class="navbar">
+        <input type="checkbox" class="toggle-menu">
+        <div class="hamburger"></div>
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="learning nav-pill" aria-haspopup="true" aria-expanded="false">Learning</button>
+              <div class="dropdown-content" role="menu" hidden>
+                <a href="unlearning.html" role="menuitem">Unlearning</a>
+                <a href="principles.html" role="menuitem">Principles</a>
+                <a href="courses.html" role="menuitem">Courses</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="guide.html">Guide</a></li>
+          <li><a href="flow-map.html">Flow-map</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Ang navigation toolbar -->
+  <div class="shabad-toolbar" role="group" aria-label="Ang navigation">
+    <button id="prev-ang" type="button" class="btn">&larr; Previous</button>
+    <label for="ang-input" class="ang-label">Ang</label>
+    <input id="ang-input" class="ang-input" type="number" min="1" max="1430" inputmode="numeric" value="1" />
+    <button id="go-ang" type="button" class="btn">Go</button>
+    <button id="next-ang" type="button" class="btn">Next &rarr;</button>
+  </div>
+
+  <!-- Search bar (CSS-positioned, Gurmukhi-enabled) -->
+  <div class="shabad-search">
+    <form class="search-form" action="search-results.html" method="get" role="search">
+      <div class="search-container">
+        <input
+          name="q"
+          id="search"
+          type="search"
+          class="gurbani-font"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="ਗੁਰਬਾਣੀ ਖੋਜ"
+          aria-label="Search Gurbani"
+        />
+        <button type="button" class="clear-search-toggle" aria-label="Clear search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-options">
+        <select name="type" id="search-type">
+          <option value="1">First letter each word</option>
+          <option value="2">Full word</option>
+          <option value="5">Ang</option>
+        </select>
+      </div>
+      <div class="live-results" id="live-results" hidden></div>
+    </form>
+  </div>
+
+  <main style="max-width: min(1200px, 92vw); margin: 2rem auto;">
+    <div id="gurbani-container" class="shabad-card">
+      <div class="loading">Loading…</div>
+    </div>
+  </main>
+  
+  <!-- SCRIPTS IN CORRECT ORDER - NO DUPLICATES -->
+  <!-- 1. API must be first -->
+  <script src="js/gurbani-api-shim.js"></script>
+  
+  <!-- 2. Menu functionality -->
+  <script src="js/menu.js"></script>
+  
+  <!-- 3. Search functionality -->
+  <script src="js/search.js"></script>
+  <script src="js/search-live.js"></script>
+  
+  <!-- 4. Meaning box (for word meanings) -->
+  <script src="js/meaning-box.js"></script>
+  
+  <!-- 5. Ang viewer MUST BE LAST as it uses all the above -->
+  <script src="js/ang-viewer.js"></script>
+</body>
+</html>

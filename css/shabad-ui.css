@@ -1,0 +1,379 @@
+/* ============ Shared SHABAD UI (search + reader) ============ */
+
+/* Z-order constants used across the UI */
+:root {
+  --z-header:   1000;  /* header/nav */
+  --z-backdrop: 1100;  /* click-off backdrop for dropdown */
+  --z-toolbar:  1200;  /* Ang nav toolbar */
+  --z-live:     1250;  /* live search results panel */
+  --z-dropdown: 1300;  /* dropdown panel itself */
+  --angnav-top: 64px;  /* JS will tweak this at runtime to align with header */
+}
+
+/* Background (fixed image + dark fallback + no horizontal scroll) */
+:root, html, body { background-color: #070d18; }
+html, body { min-height: 100%; height: auto; overflow-x: hidden; }
+
+/* Fixed background artwork */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("../images/bg.png"); /* keep original art */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  box-shadow: inset 0 0 200px rgba(0,0,0,0.35);
+}
+
+/* Subtle mirrored glow behind */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: url("../images/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transform: scaleY(-1);
+  opacity: 0.25;
+  mix-blend-mode: screen;
+}
+
+/* Utility: respect [hidden] everywhere */
+[hidden] { display: none !important; }
+
+/* Status text uses Latin UI */
+.loading, .error, .empty, .info, .status, .ui-text,
+.latin-ui, .latin-ui * {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0 !important;
+  color: #fff;
+  opacity: .9;
+  text-align: center;
+}
+
+/* Keep header above background and below dropdown layers */
+header { position: relative; z-index: var(--z-header); }
+
+/* Reserve right space so pills don't overlap toolbar on wide screens */
+.shabad-page header nav { padding-right: 320px; }
+
+/* ==================== Dropdown (Learning) ==================== */
+
+/* Transparent backdrop that only captures clicks when active */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  background: transparent;          /* no visual overlay, no blur */
+  pointer-events: none;              /* default: doesn't block anything */
+  opacity: 0;
+  transition: opacity .12s ease;
+}
+.menu-backdrop.active {
+  pointer-events: auto;              /* enable click-off */
+  opacity: 1;                        /* still invisible, but can catch clicks */
+}
+
+/* The dropdown panel itself gets the glass look, not the backdrop */
+.dropdown .dropdown-content {
+  position: fixed;                   /* we compute viewport coords in JS */
+  left: var(--dd-left, 50%);
+  top:  var(--dd-top,  72px);
+  transform: translateX(-50%);
+  z-index: var(--z-dropdown);
+  min-width: 220px;
+  max-width: min(360px, 86vw);
+  display: none;                     /* JS flips to block when open */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.dropdown.open .dropdown-content {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Items inside dropdown */
+.dropdown .dropdown-content a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background .15s ease, border-color .15s ease;
+  border: 1px solid transparent;
+}
+.dropdown .dropdown-content a:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.24);
+}
+
+/* ==================== Ang toolbar (right) - ALIGNED WITH HEADER ROW ==================== */
+
+.shabad-toolbar {
+  position: fixed;
+  right: 18px;
+  top: 35px; /* Vertically centered with header menu items */
+  z-index: var(--z-toolbar);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.shabad-toolbar, .shabad-toolbar * {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0;
+}
+.shabad-toolbar .btn {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.10);
+  color: #ffffff;
+  padding: 8px 14px;
+  line-height: 1;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.98rem;
+  white-space: nowrap;
+  transition: background .15s ease, border-color .15s ease, transform .05s ease;
+}
+.shabad-toolbar .btn:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); }
+.shabad-toolbar .btn:active { transform: translateY(1px); }
+.shabad-toolbar .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.shabad-toolbar .ang-label { color:#fff; opacity:.9; font-size:1rem; margin-right:-2px; }
+.shabad-toolbar .ang-input  {
+  width: 84px; text-align: center; color:#fff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px; padding: 7px 10px; font-size:1rem;
+}
+.shabad-toolbar .ang-input:focus { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ==================== Search bar (left) - NO BORDERS ==================== */
+
+.shabad-search {
+  position: relative;
+  z-index: var(--z-header);
+  max-width: min(520px, 46vw);
+  margin: 8px 16px 0 16px;
+}
+
+/* Remove ALL borders from search container and its children */
+.shabad-search,
+.shabad-search *,
+.shabad-search .search-container,
+.shabad-search .search-container * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Search form - transparent background, no borders */
+.shabad-search .search-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* INPUT uses Gurmukhi face - keep internal input border */
+.shabad-search .search-form input[type="search"] {
+  font-family: 'Noto Sans Gurmukhi','GurbaniAkhar','Nirmala UI','Mukta Mahee',sans-serif !important;
+  letter-spacing: .15px;
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  flex: 1 1 auto;
+  min-width: 220px;
+}
+.shabad-search .search-form input[type="search"]::placeholder { color: #ffffffcc; }
+
+/* SELECT + BUTTON use Latin UI - keep internal borders */
+.shabad-search .search-form select,
+.shabad-search .search-form button[type="submit"] {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0 !important;
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 1rem;
+}
+.shabad-search .search-form button[type="submit"] { padding: 8px 14px; cursor: pointer; }
+.shabad-search .search-form button[type="submit"]:hover {
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.35) !important;
+}
+
+/* Live results panel */
+.shabad-search .search-container { position: relative; }
+
+#live-results {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: var(--z-live);
+  max-height: min(52vh, 520px);
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.28) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Items inside live results */
+#live-results .result-item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+  border: 1px solid transparent !important;
+  white-space: normal;
+}
+#live-results .result-item:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.24) !important;
+}
+
+/* ==================== Reader panel - MINIMAL TOP MARGIN ==================== */
+
+#gurbani-container {
+  max-width: min(980px, 92vw);
+  margin: 60px auto 64px !important; /* Reduced from 80px to 60px */
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  color: #fff;
+  text-align: left;
+}
+
+/* ===== Ang page specific overrides ===== */
+.shabad-page .shabad-search {
+  position: relative;
+  z-index: var(--z-header);
+}
+
+/* keep the form to a compact width */
+.shabad-page .shabad-search .search-form {
+  width: 460px;
+  max-width: calc(100vw - 48px);
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: transparent !important;
+}
+
+/* input sizing */
+.shabad-page .shabad-search #search {
+  font-size: 1rem;
+  padding: 8px 12px;
+  height: 42px;
+}
+
+/* select/button match the input height */
+.shabad-page .shabad-search select,
+.shabad-page .shabad-search button[type="submit"] {
+  font-size: 1rem;
+  height: 38px;
+  padding: 6px 12px;
+}
+
+/* Override the general gurbani-container margin for shabad pages */
+.shabad-page #gurbani-container{
+  margin: 60px auto 56px !important; /* Even tighter gap */
+}
+
+/* Remove any margins from search elements */
+.shabad-page .shabad-search{
+  margin: 4px 0 0 !important;
+}
+.shabad-page .shabad-search .search-container{
+  margin: 0 !important;
+}
+
+/* Keep toolbar fixed position */
+.shabad-page .shabad-toolbar{
+  top: 35px !important; /* Aligned with header menu */
+}
+
+/* Text sizing */
+.shabad-page .gurbani-line .g-line-text{
+  font-size: clamp(1.30rem, 2.2vw, 1.60rem) !important;
+  line-height: 1.55 !important;
+}
+.shabad-page .gurbani-line .g-line-translit{
+  font-size: 1.06rem !important;
+  line-height: 1.5 !important;
+  margin-top: 6px !important;
+}
+
+/* Media queries */
+@media (min-width: 1100px){
+  .shabad-page #gurbani-container{
+    margin-top: 55px !important; /* Even less gap on wide screens */
+  }
+}
+
+@media (max-width: 640px){
+  .shabad-page #gurbani-container{
+    margin-top: 50px !important; /* Minimal gap on mobile */
+    padding: 14px !important;
+  }
+  
+  .shabad-toolbar {
+    right: 10px;
+    top: 30px !important; /* Adjusted for mobile header */
+    padding: 8px 10px;
+    gap: 8px;
+  }
+  
+  .shabad-toolbar .btn {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+  
+  .shabad-toolbar .ang-input {
+    width: 70px;
+    padding: 5px 8px;
+  }
+}

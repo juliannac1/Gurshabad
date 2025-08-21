@@ -1,1 +1,61 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gurshabad — Unlearning</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="screen.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='24' fill='%230a0a0a'/><text x='50%25' y='62%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='80' fill='%23b3d9ff'>G</text></svg>">
+  <style>
+    main.page-shell{min-height:calc(100vh - 80px);display:grid;place-items:center;padding:24px;}
+    .glass-card{
+      max-width:800px;width:100%;padding:28px 32px;border-radius:20px;
+      color:#fff;text-align:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      box-shadow:0 18px 60px rgba(0,0,0,.45), inset 0 .5px 0 rgba(255,255,255,.35);
+    }
+    .glass-card h1{margin:0 0 8px;font-size:clamp(1.6rem,3.2vw,2.2rem);}
+    .glass-card p{margin:0;opacity:.9;}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="index.html"><img alt="logo" width="65" src=""></a></div>
+      <div class="navbar">
+        <input type="checkbox" class="toggle-menu">
+        <div class="hamburger"></div>
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="learning nav-pill" aria-haspopup="true" aria-expanded="false">Learning</button>
+              <div class="dropdown-content" role="menu" hidden>
+                <a href="unlearning.html" role="menuitem" aria-current="page">Unlearning</a>
+                <a href="principles.html" role="menuitem">Principles</a>
+                <a href="courses.html" role="menuitem">Courses</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="guide.html">Guide</a></li>
+          <li><a href="flow-map.html">Flow-map</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="glass-card">
+      <h1>Unlearning</h1>
+      <p>Coming soon — this space will host guided unlearning paths to clear myths and align with Gurmat.</p>
+    </section>
+  </main>
+
+  <script src="js/menu.js"></script>
+</body>
+</html>

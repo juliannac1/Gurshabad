@@ -1,30 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link href="css/normalize.css" rel="normalize" type="text/css">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gurshabad - About</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="screen.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='24' fill='%230a0a0a'/><text x='50%25' y='62%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='80' fill='%23b3d9ff'>G</text></svg>">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-            <a href="index.html"><img
-                alt="logo"
-                width="65"
-                src=""></a>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img alt="logo" width="65" src=""></a>
+      </div>
+      <div class="navbar">
+        <input type="checkbox" class="toggle-menu">
+        <div class="hamburger"></div>
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="learning nav-pill" aria-haspopup="true" aria-expanded="false">Learning</button>
+              <div class="dropdown-content" role="menu" hidden>
+                <a href="unlearning.html" role="menuitem">Unlearning</a>
+                <a href="principles.html" role="menuitem">Principles</a>
+                <a href="courses.html" role="menuitem">Courses</a>
+              </div>
             </div>
-            <div class="navbar">
-                <input type="checkbox" class="toggle-menu">
-                <div class="hamburger"></div>
-                <ul class="menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">about</a></li>
-                    <li><a href="learning.html">Learning</a></li>
-                </ul>
-            </div>
-        </nav>
-</header>
+          </li>
+          <li><a href="guide.html">Guide</a></li>
+          <li><a href="flow-map.html">Flow-map</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main style="max-width: 900px; margin: 64px auto; padding: 24px; border-radius: 16px; background: #ffffff14; border: 1px solid #ffffff26; box-shadow: 0 8px 32px #00000039; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #f2f2f2;">
+    <h1 style="margin-top:0;">About</h1>
+    <p>
+      Gurshabad.org is a vibrant, research-driven platform dedicated to meaningful engagement with Gurbani, moving beyond traditional literal translations and outdated commentaries. Our mission is straightforward yet profound: to foster a thoughtful, internalized understanding of Gurbani that transforms daily life here and now, rather than emphasizing ritual or speculation about the afterlife.
+<p>
+
+</p>
+      At Gurshabad.org, we interpret Gurbani through Gurbani itself, prioritizing the text’s inherent coherence above external myths or sectarian interpretations. We take language seriously, employing rigorous grammatical, morphological, and idiomatic analysis to deliver clear and conceptually sound renderings. Word-for-word translations are used as temporary tools, valuable only insofar as they guide learners towards deeper conceptual understanding.
+<p>
+
+</p>
+      All our content is meticulously versioned, carefully reviewed by knowledgeable contributors, and continually refined as scholarship advances. Gurshabad.org welcomes learners at every level, making Gurbani accessible to newcomers while simultaneously providing depth and precision for those engaged in serious inquiry. The ultimate goal remains consistent: to awaken individual conscience, encourage truthful living, and inspire the embodiment of divine virtues in everyday actions.
+<p>
+  Our resources thoughtfully integrate insights from trusted Gurmat-centric videos, lectures, and articles in both English and Punjabi. These include orientation materials designed to correct common misconceptions, detailed expositions of core concepts, authentic analyses of Ardaas, comprehensive explorations of Jup bani, focused studies of individual shabads, and carefully vetted archival content. Instead of overwhelming learners with raw links or unstructured information, we distill, cross-reference, and sequence resources to systematically build understanding.
+<p>
+
+</p>
+  When dealing with advanced or historically sensitive topics, we clearly label and contextualize the content, recommending it only once foundational knowledge is established. Unique to our platform is the emphasis on explaining the conceptual rationale behind interpretations, identifying frequent mistranslations, and highlighting anti-Gurmat accretions through clear integrity notes. Our approach is multi-layered—from lexical guidance and conceptual renderings to commentary and grammatical explanations—allowing learners to progress comfortably at their own pace.
+<p>
+
+</p>Governance at Gurshabad.org is purposeful yet unobtrusive, characterized by curated reviews, periodic quality checks for conceptual consistency, structured and responsive feedback channels, minimal data collection, and an unwavering commitment to non-commercial use of learner analytics. The result is a professional, transparent, and continuously evolving learning space dedicated to rigorous, accessible, and life-oriented Gurbani study.
+</p>
+
+</p>
+Credits: 
+<p></p>Core Contributors: B, Singh, J. Kaur, R. Kaur
+<p></p>Lead Developer: Julianna Chin. 
+<p></p>Expert Panel: Dr. Karminder Singh (NZ), Bhai Bhupinder Singh (NY)
+<p></p>Admin’s Contact: admin@gurshabad.org
+<p></p>Licensing & attribution details at [LICENSES_PAGE_PLACEHOLDER]. © Gurshabad.org trademark 2025
+    </p>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/menu.js"></script>
+</body>
+</html>

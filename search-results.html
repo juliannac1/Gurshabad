@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gurshabad — Search Results</title>
+
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="screen.css">
+
+  <!-- Shared shabad/search UI -->
+  <link rel="stylesheet" href="css/shabad-ui.css">
+  <link rel="stylesheet" href="css/ang-viewer.css">
+  <link rel="stylesheet" href="css/meaning-box.css">
+<script>window.__GURBANI_API_BASE__ = '/api/banidb';</script>
+  <style>
+    .search-results-wrap { max-width: 980px; margin: 90px auto 64px; padding: 0 16px; }
+
+    /* Compact search bar */
+    .search-topbar { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 18px; }
+    .search-form {
+      display: flex; gap: 10px; align-items: center;
+      padding: 10px 12px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* Gurmukhi face for INPUT ONLY */
+    .search-form input[type="search"] {
+      font-family: 'Noto Sans Gurmukhi','Gurmukhi',sans-serif !important;
+      letter-spacing: .15px;
+      appearance: none;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
+      color: #fff; border-radius: 10px; padding: 8px 12px; font-size: 1rem;
+      flex: 1 1 auto; min-width: 220px;
+    }
+    .search-form input[type="search"]::placeholder { color: #ffffffcc; }
+
+    /* English face for SELECT + BUTTON */
+    .search-form select,
+    .search-form button[type="submit"] {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+      letter-spacing: 0 !important;
+      appearance: none;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
+      color: #fff; border-radius: 10px; padding: 8px 12px; font-size: 1rem;
+    }
+    .search-form button[type="submit"] { padding: 8px 14px; cursor: pointer; }
+    .search-form button[type="submit"]:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.35); }
+
+    .search-info.card, .result-item.card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px; padding: 18px 20px;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff;
+    }
+    .search-info { margin-top: 6px; margin-bottom: 18px; text-align: center; }
+    .search-title { margin: 0 0 8px 0; font-size: clamp(1.3rem, 2.4vw, 1.8rem); color: #fff; }
+    .search-sub { margin: 0; opacity: .9; }
+
+    .result-item { margin-bottom: 14px; cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+    .result-item:hover { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); }
+    .result-gurmukhi { font-size: clamp(1.2rem, 2.4vw, 1.6rem); margin: 0 0 6px 0; font-family: 'Noto Sans Gurmukhi','Gurmukhi',sans-serif; }
+    .result-meta { font-size: .95rem; opacity: .85; }
+
+    .back-link {
+      display: inline-block; margin-bottom: 12px; color: #fff; text-decoration: none;
+      padding: 8px 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 12px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .back-link:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.28); }
+
+    /* Tiny “AA→ਅ” toggle pill (default ON) */
+    .trans-toggle {
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
+      color: #fff; border-radius: 999px; padding: 6px 10px; font-size: .9rem;
+      cursor: pointer; user-select: none;
+    }
+    .trans-toggle[aria-pressed="true"] { background: rgba(255,255,255,.18); }
+  </style>
+</head>
+
+<body class="gurbani-font shabad-page">
+  <!-- English nav (unchanged) -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img alt="logo" width="65" src=""></a>
+      </div>
+      <div class="navbar">
+        <input type="checkbox" class="toggle-menu">
+        <div class="hamburger"></div>
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="learning nav-pill" aria-haspopup="true" aria-expanded="false">Learning</button>
+              <div class="dropdown-content" role="menu" hidden>
+                <a href="unlearning.html" role="menuitem">Unlearning</a>
+                <a href="principles.html" role="menuitem">Principles</a>
+                <a href="courses.html" role="menuitem">Courses</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="guide.html">Guide</a></li>
+          <li><a href="flow-map.html">Flow-map</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="search-results-wrap">
+    <div class="search-topbar">
+      <!-- Input = Gurmukhi; Select + Button = English -->
+      <form class="search-form" action="search-results.html" method="get" role="search" novalidate>
+        <select id="search-type" name="type" aria-label="Search type">
+          <option value="1">First Letter (Anywhere)</option>
+          <option value="2" selected>Full Word (Gurmukhi)</option>
+          <option value="5">Ang</option>
+        </select>
+
+        <input
+          id="search"
+          name="q"
+          type="search"
+          inputmode="text"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          dir="ltr"
+          lang="pa"
+          placeholder="ਗੁਰਬਾਣੀ ਖੋਜ" />
+
+        <button type="submit">Search</button>
+        <button type="button" id="trans-toggle" class="trans-toggle" aria-pressed="true" title="Transliterate Roman → Gurmukhi">AA → ਅ</button>
+      </form>
+    </div>
+
+    <section class="search-info card">
+      <h2 class="search-title ui-text">Search Results</h2>
+      <p id="search-query-info" class="search-sub ui-text"></p>
+    </section>
+
+    <section id="search-results">
+      <div class="loading ui-text">Searching&hellip;</div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/gurbani-api-shim.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/meaning-box.js"></script>
+  <script src="js/search-results.js"></script>
+  <script src="js/menu.js"></script>
+
+  <!-- IME-safe Roman→Gurmukhi transliterator (like home). Default: ON -->
+  <script>
+    (function () {
+      var input = document.getElementById('search');
+      var toggle = document.getElementById('trans-toggle');
+      if (!input || !toggle) return;
+
+      // Lightweight map good enough for first-letter typing and simple words
+      var DIG = ['੦','੧','੨','੩','੪','੫','੬','੭','੮','੯'];
+      var MAP = {
+        a:'ਅ', b:'ਬ', c:'ਚ', d:'ਦ', e:'ਇ', f:'ਫ', g:'ਗ', h:'ਹ', i:'ਇ', j:'ਜ',
+        k:'ਕ', l:'ਲ', m:'ਮ', n:'ਨ', o:'ਉ', p:'ਪ', q:'ਕ', r:'ਰ', s:'ਸ', t:'ਤ',
+        u:'ਉ', v:'ਵ', w:'ਵ', x:'ਕਸ', y:'ਯ', z:'ਜ਼',
+        A:'ਆ', B:'ਭ', C:'ਛ', D:'ਡ', E:'ਏ', F:'ਫ਼', G:'ਘ', H:'ਃ', I:'ਈ', J:'ਝ',
+        K:'ਖ', L:'ਲ਼', M:'ੰ', N:'ਣ', O:'ਓ', P:'ਫ਼', Q:'ਕ਼', R:'ੜ', S:'ਸ਼', T:'ਟ',
+        U:'ਊ', V:'ਵ', W:'ਵ', X:'ਖ਼', Y:'ਯ', Z:'ਗ਼'
+      };
+      function toPa(s) {
+        return s.replace(/[0-9A-Za-z]/g, function(ch){
+          if (/[0-9]/.test(ch)) return DIG[+ch];
+          return MAP[ch] || ch;
+        });
+      }
+
+      var composing = false;
+      function transliterateNow() {
+        if (composing || toggle.getAttribute('aria-pressed') !== 'true') return;
+        var v = input.value;
+        if (!/[A-Za-z0-9]/.test(v)) return; // already Punjabi
+        var pos = input.selectionEnd || v.length;
+        var nv = toPa(v);
+        input.value = nv;
+        try { input.setSelectionRange(nv.length, nv.length); } catch(_) {}
+      }
+
+      input.addEventListener('compositionstart', function(){ composing = true; });
+      input.addEventListener('compositionend', function(){ composing = false; transliterateNow(); });
+      input.addEventListener('input', transliterateNow);
+      input.addEventListener('paste', function(e){
+        e.preventDefault();
+        var t = (e.clipboardData || window.clipboardData).getData('text') || '';
+        var ins = toggle.getAttribute('aria-pressed') === 'true' ? toPa(t) : t;
+        if (document.execCommand) document.execCommand('insertText', false, ins);
+        else input.value += ins;
+        transliterateNow();
+      });
+
+      toggle.addEventListener('click', function(){
+        var on = toggle.getAttribute('aria-pressed') === 'true';
+        toggle.setAttribute('aria-pressed', on ? 'false' : 'true');
+        transliterateNow();
+      });
+
+      // If URL had Roman (?q=...), transliterate it into the field on load
+      try {
+        var q = new URL(location.href).searchParams.get('q') || '';
+        if (/[A-Za-z0-9]/.test(q)) {
+          input.value = toPa(q);
+        } else if (q) {
+          input.value = q;
+        }
+      } catch(_) {}
+    })();
+  </script>
+</body>
+</html>

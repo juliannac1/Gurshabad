@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Debug API Response</title>
+</head>
+<body>
+    <h1>Debug API Response Structure</h1>
+    <button onclick="testAPI()">Test Ang 1 Structure</button>
+    <pre id="result" style="white-space: pre-wrap; word-wrap: break-word;"></pre>
+    
+    <script>
+        async function testAPI() {
+            const resultEl = document.getElementById('result');
+            try {
+                resultEl.textContent = 'Fetching Ang 1...';
+                const response = await fetch('http://localhost:3002/api/banidb/ang/1');
+                const data = await response.json();
+                
+                // Show the structure
+                resultEl.textContent = 'Full response:\n' + JSON.stringify(data, null, 2);
+                
+                // Also log specific paths
+                console.log('Full data:', data);
+                console.log('data.lines:', data.lines);
+                console.log('data.lines?.page:', data.lines?.page);
+                console.log('Is data an array?', Array.isArray(data));
+                console.log('Is data.lines an array?', Array.isArray(data.lines));
+                console.log('Is data.lines.page an array?', Array.isArray(data.lines?.page));
+                
+                // Save to window for inspection
+                window.debugData = data;
+            } catch (error) {
+                resultEl.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

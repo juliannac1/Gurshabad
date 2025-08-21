@@ -1,0 +1,196 @@
+ /* Meaning Box Styles */
+.meaning-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.meaning-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: meaningBoxAppear 0.3s ease-out;
+}
+
+@keyframes meaningBoxAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Header */
+.meaning-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.meaning-header h3 {
+  font-size: 1.8rem;
+  color: #1f2937;
+  margin: 0;
+  font-family: 'GurbaniAkhar', 'NotoSansGurmukhi', sans-serif;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  color: #6b7280;
+}
+
+.close-btn:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+/* Content sections */
+.meaning-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.meaning-content > div {
+  padding: 1rem 0;
+}
+
+.meaning-content h4 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin: 0 0 0.5rem 0;
+}
+
+.translation-text {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #1f2937;
+  margin: 0;
+}
+
+.transliteration-text {
+  font-size: 1rem;
+  color: #6b7280;
+  font-style: italic;
+  margin: 0;
+}
+
+.etymology-text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+/* Scrollbar styling */
+.meaning-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.meaning-box::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.meaning-box::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.meaning-box::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .meaning-overlay {
+    padding: 10px;
+  }
+  
+  .meaning-box {
+    padding: 1.5rem;
+    max-height: 90vh;
+  }
+  
+  .meaning-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .translation-text {
+    font-size: 1rem;
+  }
+  
+  .meaning-content {
+    gap: 1rem;
+  }
+}
+
+/* Dark mode support for meaning box */
+@media (prefers-color-scheme: dark) {
+  .meaning-box {
+    background: #1f2937;
+    color: #f3f4f6;
+  }
+  
+  .meaning-header {
+    border-bottom-color: #374151;
+  }
+  
+  .meaning-header h3 {
+    color: #f3f4f6;
+  }
+  
+  .close-btn {
+    color: #9ca3af;
+  }
+  
+  .close-btn:hover {
+    background: #374151;
+    color: #f3f4f6;
+  }
+  
+  .meaning-content h4 {
+    color: #9ca3af;
+  }
+  
+  .translation-text {
+    color: #f3f4f6;
+  }
+  
+  .transliteration-text {
+    color: #9ca3af;
+  }
+  
+  .etymology-text {
+    color: #d1d5db;
+  }
+}
